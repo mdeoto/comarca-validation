@@ -1,5 +1,5 @@
 # ============================================================
-# Regiones y sitios de observación.
+# Regiones y sitios de observación
 #
 # Un "site" representa un sitio físico de validación.
 # Un mismo sitio puede contener varios instrumentos:
@@ -7,8 +7,12 @@
 #   - estación meteorológica automática
 #   - otros instrumentos futuros
 #
-# La elevación es una propiedad fundamental del sitio debido
-# a la topografía compleja de la Comarca Andina.
+# "location" representa la ubicación física del sitio.
+#
+# "capture" contiene parámetros exclusivamente operativos
+# utilizados para posicionar el mapa durante la adquisición.
+# Por lo tanto, capture.latitude / capture.longitude pueden
+# diferir ligeramente de location.latitude / location.longitude.
 # ============================================================
 
 regions:
@@ -21,31 +25,114 @@ regions:
 # ------------------------------------------------------------
 # Sitios
 # ------------------------------------------------------------
-#
-# Ejemplo de estructura (NO es un sitio real):
-#
-# sites:
-#
-#   sitio_ejemplo:
-#     name: "Nombre del sitio"
-#     region: "comarca"
-#
-#     location:
-#       latitude: -00.0000
-#       longitude: -00.0000
-#       elevation_m: 000
-#       elevation_source: "metadata"
-#
-#     instruments:
-#
-#       air_quality:
-#         provider: "purpleair"
-#         sensor_id: "XXXXX"
-#
-#       meteorology:
-#         provider: "XXXXX"
-#         station_id: "XXXXX"
-#
-# ------------------------------------------------------------
 
-sites: {}
+sites:
+
+  # ==========================================================
+  # Eco Comarca (PA-1)
+  # ==========================================================
+
+  eco_comarca_pa1:
+    name: "Eco Comarca (PA-1)"
+    region: "comarca"
+
+    location:
+      latitude: -41.94608998
+      longitude: -71.52438658
+      elevation_m: null
+      elevation_source: null
+
+    instruments:
+
+      air_quality:
+        provider: "purpleair"
+        station_name: "Eco Comarca (PA-1)"
+
+        variables:
+
+          pm25:
+            enabled: true
+            map_product: "raw_pm25"
+
+          pm10:
+            enabled: true
+            map_product: "raw_pm10"
+
+        capture:
+          zoom: 22
+          latitude: -41.94608998
+          longitude: -71.52438658
+          select: 309340
+
+
+  # ==========================================================
+  # GeoMuseo - El Bolsón (PA-3)
+  # ==========================================================
+
+  geomuseo_el_bolson_pa3:
+    name: "GeoMuseo - El Bolsón (PA-3)"
+    region: "comarca"
+
+    location:
+      latitude: -41.966024
+      longitude: -71.53532554
+      elevation_m: null
+      elevation_source: null
+
+    instruments:
+
+      air_quality:
+        provider: "purpleair"
+        station_name: "GeoMuseo - El Bolsón (PA-3)"
+
+        variables:
+
+          pm25:
+            enabled: true
+            map_product: "raw_pm25"
+
+          pm10:
+            enabled: true
+            map_product: "raw_pm10"
+
+        capture:
+          zoom: 22
+          latitude: -41.966024
+          longitude: -71.53532554
+
+
+  # ==========================================================
+  # Lago Puelo - Villa del Lago (PA-6)
+  # ==========================================================
+
+  lago_puelo_villa_del_lago_pa6:
+    name: "Lago Puelo - Villa del Lago (PA-6)"
+    region: "comarca"
+
+    location:
+      latitude: -42.0810513
+      longitude: -71.60873023
+      elevation_m: null
+      elevation_source: null
+
+    instruments:
+
+      air_quality:
+        provider: "purpleair"
+        station_name: "Lago Puelo - Villa del Lago (PA-6)"
+
+        variables:
+
+          pm25:
+            enabled: true
+            map_product: "raw_pm25"
+
+          pm10:
+            enabled: true
+            map_product: "raw_pm10"
+
+        capture:
+          zoom: 22
+          latitude: -42.0810513
+          longitude: -71.60873023
+          select: 283814

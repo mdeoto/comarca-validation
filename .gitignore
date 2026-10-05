@@ -8,3 +8,20 @@ __pycache__/
 data/database/*.sqlite
 data/database/*.sqlite-shm
 data/database/*.sqlite-wal
+
+# ============================================================
+# Operational acquisition
+# ============================================================
+
+# Observations generated continuously
+data/observations/
+
+# Temporary screenshots / OCR material
+data/debug/
+
+# Runtime logs
+logs/
+
+# Runtime locks
+*.lock
+.purpleair_capture.lock

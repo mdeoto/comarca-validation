@@ -1,0 +1,17 @@
+name: purpleair-capture
+
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.11
+  - pip
+  - tesseract=5.5.3
+  - pytesseract=0.3.13
+
+  - pip:
+      - numpy==2.4.6
+      - opencv-python==5.0.0.93
+      - playwright==1.63.0
+      - pyyaml==6.0.3
