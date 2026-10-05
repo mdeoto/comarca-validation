@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.env
+*.log
+.ipynb_checkpoints/
+
+# Base observacional local
+data/database/*.sqlite
+data/database/*.sqlite-shm
+data/database/*.sqlite-wal

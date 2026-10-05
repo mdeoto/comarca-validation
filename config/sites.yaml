@@ -1,0 +1,51 @@
+# ============================================================
+# Regiones y sitios de observación.
+#
+# Un "site" representa un sitio físico de validación.
+# Un mismo sitio puede contener varios instrumentos:
+#   - sensor de calidad del aire
+#   - estación meteorológica automática
+#   - otros instrumentos futuros
+#
+# La elevación es una propiedad fundamental del sitio debido
+# a la topografía compleja de la Comarca Andina.
+# ============================================================
+
+regions:
+
+  comarca:
+    name: "Comarca Andina"
+    description: "Comarca Andina del Paralelo 42"
+
+
+# ------------------------------------------------------------
+# Sitios
+# ------------------------------------------------------------
+#
+# Ejemplo de estructura (NO es un sitio real):
+#
+# sites:
+#
+#   sitio_ejemplo:
+#     name: "Nombre del sitio"
+#     region: "comarca"
+#
+#     location:
+#       latitude: -00.0000
+#       longitude: -00.0000
+#       elevation_m: 000
+#       elevation_source: "metadata"
+#
+#     instruments:
+#
+#       air_quality:
+#         provider: "purpleair"
+#         sensor_id: "XXXXX"
+#
+#       meteorology:
+#         provider: "XXXXX"
+#         station_id: "XXXXX"
+#
+# ------------------------------------------------------------
+
+sites: {}

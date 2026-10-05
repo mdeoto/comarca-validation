@@ -1,0 +1,62 @@
+# ============================================================
+# Variables disponibles para observación y validación
+# observación-modelo.
+#
+# El identificador de cada variable (pm25, temperature, etc.)
+# es interno y debe mantenerse estable.
+#
+# Se pueden agregar nuevas variables sin modificar la
+# estructura general de la aplicación.
+# ============================================================
+
+variables:
+
+  pm25:
+    name: "PM2.5"
+    long_name: "Material particulado fino (PM2.5)"
+    unit: "ug m-3"
+    category: "air_quality"
+
+  pm10:
+    name: "PM10"
+    long_name: "Material particulado (PM10)"
+    unit: "ug m-3"
+    category: "air_quality"
+
+  temperature:
+    name: "Temperatura"
+    long_name: "Temperatura del aire"
+    unit: "degC"
+    category: "meteorology"
+
+  dew_point:
+    name: "Punto de rocío"
+    long_name: "Temperatura de punto de rocío"
+    unit: "degC"
+    category: "meteorology"
+
+  relative_humidity:
+    name: "Humedad relativa"
+    long_name: "Humedad relativa del aire"
+    unit: "%"
+    category: "meteorology"
+
+  wind_speed:
+    name: "Velocidad del viento"
+    long_name: "Velocidad del viento"
+    unit: "m s-1"
+    category: "meteorology"
+
+  wind_direction:
+    name: "Dirección del viento"
+    long_name: "Dirección del viento"
+    unit: "degree"
+    category: "meteorology"
+    circular: true
+
+  precipitation:
+    name: "Precipitación"
+    long_name: "Precipitación acumulada"
+    unit: "mm"
+    category: "meteorology"
+    accumulation: true
