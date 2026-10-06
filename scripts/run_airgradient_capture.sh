@@ -3,14 +3,13 @@
 set -uo pipefail
 
 # ============================================================
-# PurpleAir operational capture
-#
-# Wrapper para ejecución automática mediante cron.
+# AirGradient operational acquisition
 #
 # Funciones:
 #   - localiza automáticamente la raíz del repositorio
+#   - carga las credenciales locales
 #   - evita ejecuciones simultáneas mediante flock
-#   - ejecuta capture_purpleair.py en el entorno dedicado
+#   - ejecuta fetch_airgradient.py en el entorno dedicado
 #   - limita la duración máxima mediante timeout
 #   - mantiene un log operativo
 # ============================================================
@@ -23,19 +22,16 @@ set -uo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BASEDIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
-ENV_DIR="/home/mdeoto/miniconda3/envs/purpleair-capture"
+ENV_NAME="airgradient-capture"
 
-PYTHON="${ENV_DIR}/bin/python"
-TESSERACT="${ENV_DIR}/bin/tesseract"
+SCRIPT="${BASEDIR}/scripts/fetch_airgradient.py"
 
-export PATH="${ENV_DIR}/bin:/usr/local/bin:/usr/bin:/bin"
-
-SCRIPT="${BASEDIR}/scripts/capture_purpleair.py"
+SECRETS_FILE="${BASEDIR}/.secrets/airgradient.env"
 
 LOGDIR="${BASEDIR}/logs"
-LOGFILE="${LOGDIR}/purpleair_capture.log"
+LOGFILE="${LOGDIR}/airgradient_capture.log"
 
-LOCKFILE="${BASEDIR}/.purpleair_capture.lock"
+LOCKFILE="${BASEDIR}/.airgradient_capture.lock"
 
 
 # ------------------------------------------------------------
@@ -61,17 +57,34 @@ fi
 
 
 # ------------------------------------------------------------
-# Entorno de ejecución
+# Credenciales
 # ------------------------------------------------------------
 
-if [ ! -x "${PYTHON}" ]; then
-    echo "$(date --iso-8601=seconds) ERROR: Python no encontrado: ${PYTHON}" \
+if [ ! -f "${SECRETS_FILE}" ]; then
+    echo "$(date --iso-8601=seconds) ERROR: no existe ${SECRETS_FILE}" \
         >> "${LOGFILE}"
     exit 1
 fi
 
-if [ ! -x "${TESSERACT}" ]; then
-    echo "$(date --iso-8601=seconds) ERROR: Tesseract no encontrado: ${TESSERACT}" \
+set -a
+source "${SECRETS_FILE}"
+set +a
+
+if [ -z "${AIRGRADIENT_API_TOKEN:-}" ]; then
+    echo "$(date --iso-8601=seconds) ERROR: AIRGRADIENT_API_TOKEN no definido" \
+        >> "${LOGFILE}"
+    exit 1
+fi
+
+
+# ------------------------------------------------------------
+# Python / entorno Conda
+# ------------------------------------------------------------
+
+PYTHON_BIN="/home/mdeoto/miniconda3/envs/${ENV_NAME}/bin/python"
+
+if [ ! -x "${PYTHON_BIN}" ]; then
+    echo "$(date --iso-8601=seconds) ERROR: no existe ${PYTHON_BIN}" \
         >> "${LOGFILE}"
     exit 1
 fi
@@ -83,8 +96,8 @@ fi
 echo "============================================================" >> "${LOGFILE}"
 echo "$(date --iso-8601=seconds) START" >> "${LOGFILE}"
 
-timeout --signal=TERM --kill-after=30s 8m \
-    "${PYTHON}" "${SCRIPT}" >> "${LOGFILE}" 2>&1
+timeout --signal=TERM --kill-after=30s 2m \
+    "${PYTHON_BIN}" "${SCRIPT}" >> "${LOGFILE}" 2>&1
 
 STATUS=$?
 

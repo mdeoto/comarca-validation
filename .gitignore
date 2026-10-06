@@ -25,3 +25,7 @@ logs/
 # Runtime locks
 *.lock
 .purpleair_capture.lock
+
+# Credenciales locales
+.secrets/
+*.env

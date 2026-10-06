@@ -136,3 +136,50 @@ sites:
           latitude: -42.0810513
           longitude: -71.60873023
           select: 283814
+
+  # ==========================================================
+  # El Pedregoso
+  # ==========================================================
+
+  el_pedregoso:
+    name: "El Pedregoso"
+    region: "comarca"
+
+    location:
+      latitude: -42.10403
+      longitude: -71.44551
+      elevation_m: null
+      elevation_source: null
+
+    instruments:
+
+      air_quality:
+        provider: "airgradient"
+        location_id: 205021
+        model: "O-1PST"
+
+        variables:
+
+          pm01:
+            enabled: true
+
+          pm02:
+            enabled: true
+
+          pm10:
+            enabled: true
+
+          temperature:
+            enabled: true
+
+          relative_humidity:
+            enabled: true
+
+          co2:
+            enabled: true
+
+          tvoc:
+            enabled: true
+
+          nox:
+            enabled: true
